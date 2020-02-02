@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, animateScroll as scroll} from 'react-scroll'
+import {animateScroll as scroll} from 'react-scroll'
 
 const Footer = () => {
     const scrollToTop = () =>{
@@ -7,7 +7,7 @@ const Footer = () => {
     }
     return (
         <div>
-            <a onClick={scrollToTop}>Na góre!</a>
+            <button onClick={scrollToTop}>Na góre!</button>
         </div>
     )
 }

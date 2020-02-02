@@ -1,5 +1,4 @@
 import React from 'react'
-import ThreeColumns from '../ThreeColumns'
 
 export const SimpleSteps = () => {
     return (
