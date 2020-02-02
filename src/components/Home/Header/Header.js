@@ -1,10 +1,10 @@
 import React from 'react'
-import Nav from '../Nav'
+import Menu from '../Menu'
 
 export const Header = () => {
     return (
         <div id='header' style={{height:'100vh'}}>
-            <Nav/>
+            <Menu/>
             Header
         </div>
         

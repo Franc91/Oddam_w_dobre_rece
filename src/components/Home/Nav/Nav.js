@@ -1,56 +1,19 @@
 import React from 'react'
-import { Link } from 'react-scroll'
+import { NavLink as Link } from 'react-router-dom'
 
-export const Nav = () => {
+const Nav = () => {
     return (
         <nav>
-            <ul style={{display:'flex', flexDirection:'row', alignItems: 'center', justifyContent: 'space-around'}}>
-                    <Link
-                    activeClass = 'active'
-                    to='header'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    >
-                    Start
-                    </Link>
-                    <Link
-                    activeClass = 'active'
-                    to='whatsGoingOn'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    >
-                    O co chodzi?
-                    </Link>
-                    <Link
-                    activeClass = 'active'
-                    to='aboutUs'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    >
-                    O nas
-                    </Link>
-                    <Link
-                    activeClass = 'active'
-                    to='WhoWeHelp'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    >
-                    Fundacje i organizacje
-                    </Link>
-                    <Link
-                    activeClass = 'active'
-                    to='contact'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    >
-                    Kontakt
-                    </Link>
-            </ul>
+            <div style={{display:"flex", justifyContent:"flex-end"}}>
+                <Link 
+                to="/logowanie"
+                style={{margin:10 }}
+                >Zaloguj</Link>
+                <Link 
+                to="/rejestracja"
+                style={{margin:10 }}
+                >Załóż konto</Link>
+            </div>
         </nav>
     )
 }
