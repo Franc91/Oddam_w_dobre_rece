@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
     }
 })
 
-const Login = (props) => {
+const Login = () => {
     const classes = useStyles()
     const history = useHistory()
     const [ state, setState ] = useState({
