@@ -6,10 +6,10 @@ import WhoWeHelp from './WhoWeHelp'
 import WhatsGoingOn from './WhatsGoingOn'
 import Nav from './Nav'
 
-export const Home = () => {
+export const Home = ({setUser}) => {
     return (
         <div>
-            <Nav/>
+            <Nav setUser={setUser}/>
             <Header className="Header" />
             <WhatsGoingOn className="WhatsGoingOn" />
             <AboutUs className="AboutUs" />

@@ -1,7 +1,17 @@
 import React from 'react'
-import { NavLink as Link } from 'react-router-dom'
+import firebase from '../../../config/fbConfig'
+import { NavLink as Link, useHistory } from 'react-router-dom'
 
-const Nav = () => {
+const Nav = ({setUser}) => {
+    const history = useHistory()
+    const handleOnClick=()=>{
+        firebase.default.auth().signOut()
+        .then(()=>{
+            setUser(null)
+            history.push('/')
+            console.log('wylogowano')
+        })
+    }
     return (
         <nav>
             <div style={{display:"flex", justifyContent:"flex-end"}}>
@@ -13,6 +23,7 @@ const Nav = () => {
                 to="/rejestracja"
                 style={{margin:10 }}
                 >Załóż konto</Link>
+                <p onClick={handleOnClick}> Wyloguj </p>
             </div>
         </nav>
     )
