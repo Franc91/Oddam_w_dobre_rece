@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Nav from '../Home/Nav';
 import Menu from '../Home/Menu';
 import TextField from '@material-ui/core/TextField';
 import firebase from "../../config/fbConfig";
 import { createUseStyles } from 'react-jss';
 import { useHistory, Link } from 'react-router-dom'
-// import { UserAuthContext } from '../../contexts/UserAuthContext';
+import { UserAuthContext } from '../../contexts/UserAuthContext';
 
 const useStyles = createUseStyles({
     login__form: {
@@ -34,7 +34,7 @@ const Login = (props) => {
             password: false
         }
     })
-    // const { user,setUser } = useContext(UserAuthContext)
+    const setUser  = useContext(UserAuthContext)
 
     // console.log(setUser)
 
@@ -57,7 +57,7 @@ const Login = (props) => {
         }))
         firebase.auth().signInWithEmailAndPassword(state.email, state.password)
         .then((user)=>{
-            props.setUser(user);
+            setUser(user);
             history.push('/')               //historia do zmiany elementów po zalgowaniu taki redirect
             console.log('zalogowano', firebase.auth().currentUser.uid, firebase.auth().currentUser.email, firebase.auth().currentUser.name)})
         .catch((error)=>{

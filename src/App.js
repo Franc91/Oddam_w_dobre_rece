@@ -4,50 +4,50 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import LogOut from './components/LogOut'
-import firebase from './config/fbConfig';
+// import firebase from './config/fbConfig';
 import {
   HashRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom'
-// import UserAuthContextProvider from './contexts/UserAuthContext';
+import UserAuthContextProvider from './contexts/UserAuthContext';
 
 
 class App extends Component {
-  state = { user: null }
+  // state = { user: null }
 
-  componentDidMount() {
-     this.authListener()
-   }
+  // componentDidMount() {
+  //    this.authListener()
+  //  }
    
-   authListener=()=>{
-     firebase.auth().onAuthStateChanged((user)=>{
-       console.log(user)
-         if(user){
-             this.setState({user})
-         }else{
-           this.setState({user:null})
-         }
-     });
-   }
+  //  authListener=()=>{
+  //    firebase.auth().onAuthStateChanged((user)=>{
+  //      console.log(user)
+  //        if(user){
+  //            this.setState({user})
+  //        }else{
+  //          this.setState({user:null})
+  //        }
+  //    });
+  //  }
  
-   setUser = (user) => {
-     this.setState({ user })
-   }
+  //  setUser = (user) => {
+  //    this.setState({ user })
+  //  }
 
   render(){
-    const { user } = this.state
+    // const { user } = this.state
   return (
     <div className="App">
       <Router>
         <Switch>
-          {/* <UserAuthContextProvider> */}
-            <Route exact path='/' render={props => <Home setUser={this.setUser}  {...props}/>} />
+          <UserAuthContextProvider>
+            <Route exact path='/' component={Home} />
             <Route path='/oddaj-rzeczy' component ={Form} />
-            <Route path='/logowanie' render={props => <Login setUser={this.setUser} {...props}/>}/>
+            <Route path='/logowanie' component={Login}/>
             <Route path='/rejestracja' component={Register}/>
             <Route path='/wylogowano' component={LogOut}/>
-          {/* </UserAuthContextProvider> */}
+          </UserAuthContextProvider>
         </Switch>
       </Router>
     </div>
