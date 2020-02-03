@@ -4,7 +4,7 @@ import { NavLink as Link, useHistory } from 'react-router-dom'
 import { UserAuthContext } from '../../../contexts/UserAuthContext'
 
 const Nav = () => {
-    const setUser = useContext(UserAuthContext)
+    const {setUser} = useContext(UserAuthContext)
     const history = useHistory()
     const handleOnClick=()=>{
         firebase.default.auth().signOut()

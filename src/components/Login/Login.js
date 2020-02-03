@@ -34,7 +34,7 @@ const Login = () => {
             password: false
         }
     })
-    const setUser  = useContext(UserAuthContext)
+    const {setUser}  = useContext(UserAuthContext)
 
     // console.log(setUser)
 

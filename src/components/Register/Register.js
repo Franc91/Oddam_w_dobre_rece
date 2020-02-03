@@ -25,18 +25,17 @@ const useStyles = createUseStyles({
 
 const Register = () => {
     const classes = useStyles()
-    const {user, setUser} = useContext(UserAuthContext)
+    const {setUser, user} = useContext(UserAuthContext)
     const history = useHistory();
     const [state, setState]= useState({
         email:'',
         password:'',
         rePassword:'', 
         fireError: '',
-        loginBtn: true, 
     })
     const mailErr = (state.email.indexOf('@') > -1 && state.email.length >= 3 )? true : false;
     const passErr = (state.password === state.rePassword && state.password.length > 5 ) ? true : false;
-    const loginBtn = (mailErr & passErr)? false : true;
+    const logBtn = (mailErr & passErr)? false : true;
 
     const handleOnChange=({target})=>{
         setState(prev => ({
@@ -57,12 +56,12 @@ const Register = () => {
             profilePassword: state.password
             })    
         })
-        .then((user)=>{
-            setUser(user);
+        .then(()=>{
+            setUser(null);
             history.push('/')               //historia do zmiany elementów po zalgowaniu taki redirect
-            console.log('zalogowano', firebase.auth().currentUser.uid, firebase.auth().currentUser.email, firebase.auth().currentUser.name)
+            // console.log('zalogowano', firebase.auth().currentUser.uid, firebase.auth().currentUser.email, firebase.auth().currentUser.name)
         })
-        .then(()=>{console.log('zarejstrowano nowego uzytkownika')})    
+        .then(()=>{console.log('zarejstrowano nowego uzytkownika', user)})    
         .catch((error)=>{
             setState(prev=>({
                 ...prev,
@@ -129,6 +128,7 @@ const Register = () => {
                         <Link to='/logowanie'>Zaloguj się</Link>
                         <button 
                         type='submit'
+                        disabled={logBtn}
                         className='login__btn'
                         >Załóż konto</button>
                     </div>
