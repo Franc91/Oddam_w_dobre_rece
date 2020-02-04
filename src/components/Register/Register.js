@@ -8,17 +8,34 @@ import { UserAuthContext } from '../../contexts/UserAuthContext'
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles({
+    container:{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems:'center',
+        justifyContent:'center',
+    },
     register__form: {
         display: 'flex',
         flexDirection: 'column',
-        width: 400,
-        height: 300
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 400
+    },
+    register__control:{
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent: 'space-between',
+        marginTop: 10
     },
     register:{
         display: 'flex',
         flexDirection: 'column',
-        alignItem: 'center',
-        justfiyContent: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
+    }, 
+    alert:{
+        color:'red'
     }
 })
 
@@ -78,61 +95,59 @@ const Register = () => {
                 <Nav />
                 <Menu />
             </div>
-            <div 
-            className={classes.register}
-             >
-                <h1>Załóż konto</h1>
-                <div className="decoration"></div>
-                <form 
-                onSubmit={handleOnSubmit}>
-                    <div className={classes.register__form}>
-                        { state.fireError ? <div>{state.fireError}</div> : null}
-                        <TextField 
-                        className='login__form--email' 
-                        type='text'
-                        name='email'
-                        label='Email'
-                        id='email'
-                        value={state.email}
-                        onChange={handleOnChange} 
-                        />
-                        <p>
+            <div className={classes.container}>
+                <div className={classes.register}>
+                    <h1>Załóż konto</h1>
+                    <div className="decoration"></div>
+                    <form 
+                    onSubmit={handleOnSubmit}>
+                        <div className={classes.register__form}>
+                            { state.fireError ? <div>{state.fireError}</div> : null}
+                            <TextField 
+                            className='login__form--email' 
+                            type='text'
+                            name='email'
+                            label='Email'
+                            id='email'
+                            value={state.email}
+                            onChange={handleOnChange} 
+                            />
                             {
-                                (!mailErr && state.email.length)? "Email powinien zawierać co najmniej 3 znaki oraz @": null
+                                (!mailErr && state.email.length)? <p className={classes.alert}>Email powinien zawierać co najmniej 3 znaki oraz @</p>: null
                             }
-                         </p>
-                        <TextField 
-                        className='login__form--password' 
-                        name='password'
-                        label='Hasło'
-                        id='password'
-                        value={state.password}
-                        onChange={handleOnChange}
-                        />
-                        <TextField 
-                        className='login__form--repassword' 
-                        name='rePassword'
-                        label='Powtórz hasło'
-                        id='repassword'
-                        value={state.rePassword}
-                        onChange={handleOnChange}
-                        />
-                        <p>
+                            <TextField 
+                            className='login__form--password' 
+                            name='password'
+                            label='Hasło'
+                            id='password'
+                            value={state.password}
+                            onChange={handleOnChange}
+                            />
+                            <TextField 
+                            className='login__form--repassword' 
+                            name='rePassword'
+                            label='Powtórz hasło'
+                            id='repassword'
+                            value={state.rePassword}
+                            onChange={handleOnChange}
+                            />
                             {
-                                (!passErr && state.password.length)? "Hasła nie są takie same lub hasło zawiera mniej niż 5 znaków": null
+                                (!passErr && state.password.length)? <p className={classes.alert}>Hasła nie są   takie same lub hasło zawiera mniej niż 5 znaków</p>: null
                             }
-                        </p>
-                    </div>
+                        </div>
 
-                    <div>
-                        <Link to='/logowanie'>Zaloguj się</Link>
-                        <button 
-                        type='submit'
-                        disabled={logBtn}
-                        className='login__btn'
-                        >Załóż konto</button>
-                    </div>
-                </form>
+                        <div className={classes.register__control}>
+                            <button>
+                                <Link to='/logowanie'>Zaloguj się</Link>
+                            </button>
+                            <button 
+                            type='submit'
+                            disabled={logBtn}
+                            className='login__btn'
+                            >Załóż konto</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </>
     )
