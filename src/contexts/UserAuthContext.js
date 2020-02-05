@@ -27,7 +27,7 @@ export class UserAuthContextProvider extends Component {
   }
   render(){
       return(
-          <UserAuthContext.Provider value={{...this.state}, this.setUser}> 
+          <UserAuthContext.Provider value={{...this.state, setUser: this.setUser}}> 
             {this.props.children}
           </UserAuthContext.Provider>
       );
