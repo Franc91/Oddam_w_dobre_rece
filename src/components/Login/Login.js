@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import Nav from '../Home/Nav';
-import Menu from '../Home/Menu';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import firebase from "../../config/fbConfig";
-import { createUseStyles } from 'react-jss';
 import { useHistory, Link } from 'react-router-dom'
 import { UserAuthContext } from '../../contexts/UserAuthContext';
 
-const useStyles = createUseStyles({
+
+const useStyles = makeStyles({
     container:{
         display: 'flex',
         flexDirection: 'column',
@@ -100,7 +100,8 @@ const Login = () => {
         <>
             <div>
                 <Nav />
-                <Menu />
+                {/* <Menu />  zamienic na x albo cos do powrotu do homepage*/}
+
             </div>
             <div className={classes.container}>
                 <div className={classes.login} >
