@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
 import Nav from '../Home/Nav';
-import Menu from '../Home/Menu';
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import { Container, Typography } from '@material-ui/core'
 import firebase from '../../config/fbConfig'
 import { useHistory, Link } from 'react-router-dom'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
-import { createUseStyles } from 'react-jss'
 
-const useStyles = createUseStyles({
+const useStyles = makeStyles({
     container:{
         display: 'flex',
         flexDirection: 'column',
@@ -91,11 +91,11 @@ const Register = () => {
 
     return (
         <>
-            <div>
+            <Container maxWidth='lg'>
                 <Nav />
-                <Menu />
-            </div>
-            <div className={classes.container}>
+                {/* <Menu /> zamienic to na x albo co zeby wraclo do home */}
+            </Container>
+            <Container fixed className={classes.container}>
                 <div className={classes.register}>
                     <h1>Załóż konto</h1>
                     <div className="decoration"></div>
@@ -148,7 +148,7 @@ const Register = () => {
                         </div>
                     </form>
                 </div>
-            </div>
+            </Container>
         </>
     )
 }

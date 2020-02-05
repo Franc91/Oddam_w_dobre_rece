@@ -4,19 +4,24 @@ import Contact from './Contact'
 import Header from './Header'
 import WhoWeHelp from './WhoWeHelp'
 import WhatsGoingOn from './WhatsGoingOn'
-import Nav from './Nav'
+import { Container, makeStyles } from '@material-ui/core'
 
-export const Home = ({setUser}) => {
+const useStyle= makeStyles(()=>({
+    root:{
+        backgroundColor:'#FFFFFF'
+    }
+}))
+
+export const Home = () => {
+    const classes=useStyle()
     return (
-        <div>
-            <Nav setUser={setUser}/>
+        <Container className={classes.root} maxWidth='xl'>
             <Header className="Header" />
             <WhatsGoingOn className="WhatsGoingOn" />
             <AboutUs className="AboutUs" />
             <WhoWeHelp className="WhoWeHelp" />
             <Contact className="Contact" />
-
-        </div>
+        </Container>
     )
 }
 

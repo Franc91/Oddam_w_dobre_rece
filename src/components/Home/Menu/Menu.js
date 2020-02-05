@@ -3,8 +3,8 @@ import { Link } from 'react-scroll'
 
 export const Menu = () => {
     return (
-        <div >
-            <ul style={{display:'flex', flexDirection:'row', alignItems: 'center', justifyContent: 'space-around'}}>
+        <div>
+            <ul style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
                 <Link
                 activeClass = 'active'
                 to='header'
