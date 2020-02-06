@@ -69,6 +69,12 @@ const useStyles = makeStyles(()=>({
 
     navigation:{
         width: '100%',
+        display:'flex',
+        flexDirection:'column',
+        // justifyContent: 'flex-end',
+        // alignItems:'flex-end',
+        marginRight: 500
+        
     },
     header__rightSide:{
         display:'flex',

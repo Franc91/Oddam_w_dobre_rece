@@ -4,24 +4,40 @@ import Contact from './Contact'
 import Header from './Header'
 import WhoWeHelp from './WhoWeHelp'
 import WhatsGoingOn from './WhatsGoingOn'
-import { Container, makeStyles } from '@material-ui/core'
+import { Container, makeStyles, Fab } from '@material-ui/core'
+import {animateScroll as scroll} from 'react-scroll'
+import NavigationIcon from '@material-ui/icons/Navigation';
 
 const useStyle= makeStyles(()=>({
     root:{
-        backgroundColor:'#FFFFFF'
+        backgroundColor:'#FFFFFF',
+        margin:0
+    },
+    fabButton:{
+        position:'fixed',
+        zIndex: 1000,
+        bottom: 30,
+        right: 10
+
     }
 }))
 
 export const Home = () => {
+    const scrollToTop = () =>{
+        scroll.scrollToTop()
+    }
     const classes=useStyle()
     return (
-        <Container className={classes.root} maxWidth='xl'>
-            <Header className="Header" />
-            <WhatsGoingOn className="WhatsGoingOn" />
-            <AboutUs className="AboutUs" />
-            <WhoWeHelp className="WhoWeHelp" />
-            <Contact className="Contact" />
-        </Container>
+        <>
+        <Header className="Header" />
+        <WhatsGoingOn className="WhatsGoingOn" />
+        <AboutUs className="AboutUs" />
+        <WhoWeHelp className="WhoWeHelp" />
+        <Contact className="Contact" />
+        <Fab className={classes.fabButton} onClick={scrollToTop}>
+            <NavigationIcon/>
+        </Fab>
+        </>
     )
 }
 
