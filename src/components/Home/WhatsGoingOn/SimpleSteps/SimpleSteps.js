@@ -93,7 +93,8 @@ const useStyle=makeStyles(()=>({
         font: '400 18px Open Sans',
         letterSpacing: 0,
         color: '#3C3C3C',
-        opacity: 1
+        opacity: 1,
+        width: 130
     },
     simpleStepsContent__line:{
         border: '1px solid #707070',
