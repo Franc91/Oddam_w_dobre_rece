@@ -6,12 +6,14 @@ import threeColsBg from '../../../../assets/3_ColumnsBackground.png'
 const useStyle = makeStyles(()=>({
     threeColumns:{
         // height:'40vh',
-        flexGrow: 1,
         background:`transparent url(${threeColsBg}) 0% 0% no-repeat padding-box`,
-        opacity: 1,
+        opacity:1,
+        flexGrow: 1,
     },
     threeColumns__item:{
-        height: '100%'
+        height: '100%',
+        // background:`transparent url(${threeColsBg}) 0% 0% no-repeat padding-box`,
+        // opacity:1
     },
     threeColumns__itemContent:{
         display:'flex',

@@ -4,7 +4,7 @@ import Contact from './Contact'
 import Header from './Header'
 import WhoWeHelp from './WhoWeHelp'
 import WhatsGoingOn from './WhatsGoingOn'
-import { Container, makeStyles, Fab } from '@material-ui/core'
+import { makeStyles, Fab } from '@material-ui/core'
 import {animateScroll as scroll} from 'react-scroll'
 import NavigationIcon from '@material-ui/icons/Navigation';
 

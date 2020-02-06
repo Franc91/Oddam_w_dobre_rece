@@ -8,8 +8,15 @@ const useStyle = makeStyles(()=>({
         display:'flex', 
         flexDirection:'row', 
         justifyContent:'flex-end',
-        marginRight:100
+        marginRight:100,
+        flexWrap:'wrap',
     },
+    menuButton:{
+        '&:hover':{
+            background: '#F0F1F1',
+            opacity: 1
+        }
+    }
 }))
 
 export const Menu = () => {

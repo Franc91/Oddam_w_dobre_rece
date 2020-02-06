@@ -49,7 +49,8 @@ const useStyles = makeStyles(()=>({
         flexDirection:'row',
         alignItems: 'center',
         justifyContent:'center',
-        width:'100%'
+        width:'100%',
+        flexWrap:'wrap'
     },
     header__decoration:{
         backgroundImage:`url(${HomeDecoration})`,
@@ -64,22 +65,22 @@ const useStyles = makeStyles(()=>({
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-        height:'100%'
+        height:'100%',
+        flexWrap:'wrap',
     },
 
     navigation:{
         width: '100%',
         display:'flex',
         flexDirection:'column',
-        // justifyContent: 'flex-end',
-        // alignItems:'flex-end',
-        marginRight: 500
+        marginRight: 500,
         
     },
     header__rightSide:{
         display:'flex',
         flexDirection:'column',
         justifyContent:'space-between',
+
     }
 
 }))
@@ -115,7 +116,7 @@ export const Header = () => {
                                 <Link className={classes.Link} to='/logowanie'>Oddaj rzeczy</Link>
                             </Button>
                             <Button variant='outlined' className={classes.header__button}>
-                                <Link className={classes.Link} to='/oddaj-rzeczy'>Zorganizuj zbiórke</Link>
+                                <Link className={classes.Link} to='/logowanie'>Zorganizuj zbiórke</Link>
                             </Button>
                             </div>
                     </div>

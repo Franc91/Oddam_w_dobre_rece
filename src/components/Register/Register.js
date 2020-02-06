@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import Nav from '../Home/Nav';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import firebase from '../../config/fbConfig'
 import { useHistory, Link } from 'react-router-dom'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
