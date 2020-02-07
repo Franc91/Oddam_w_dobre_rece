@@ -8,7 +8,6 @@ const useStyle = makeStyles(()=>({
         display:'flex', 
         flexDirection:'row', 
         justifyContent:'flex-end',
-        marginRight:100,
         flexWrap:'wrap',
     },
     menuButton:{

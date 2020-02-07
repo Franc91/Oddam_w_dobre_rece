@@ -11,7 +11,6 @@ const useStyle = makeStyles(()=>({
         flexDirection:'row', 
         justifyContent:'flex-end',
         marginTop: 30,
-        marginRight:100,
         flexWrap:'wrap',
     },
     navButton:{

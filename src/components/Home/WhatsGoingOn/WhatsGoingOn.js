@@ -4,7 +4,7 @@ import SimpleSteps from './SimpleSteps'
 
 const WhatsGoingOn = () => {
     return (
-        <div id='whatsGoingOn' style={{height:'100vh'}}>
+        <div id='whatsGoingOn' >
             <ThreeColumns/>
             <SimpleSteps/>
         </div>

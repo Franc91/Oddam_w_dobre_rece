@@ -1,19 +1,16 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import threeColsBg from '../../../../assets/3_ColumnsBackground.png'
+import threeColsBg from '../../../../assets/3ColumnsBackground2x.png'
 
 const useStyle = makeStyles(()=>({
     threeColumns:{
-        // height:'40vh',
         background:`transparent url(${threeColsBg}) 0% 0% no-repeat padding-box`,
         opacity:1,
         flexGrow: 1,
     },
     threeColumns__item:{
-        height: '100%',
-        // background:`transparent url(${threeColsBg}) 0% 0% no-repeat padding-box`,
-        // opacity:1
+        // height: '100%',
     },
     threeColumns__itemContent:{
         display:'flex',

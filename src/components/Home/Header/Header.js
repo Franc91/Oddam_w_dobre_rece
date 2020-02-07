@@ -73,13 +73,12 @@ const useStyles = makeStyles(()=>({
         width: '100%',
         display:'flex',
         flexDirection:'column',
-        marginRight: 500,
-        
     },
     header__rightSide:{
         display:'flex',
         flexDirection:'column',
         justifyContent:'space-between',
+        paddingRight: '50px'
 
     }
 
@@ -88,41 +87,41 @@ const useStyles = makeStyles(()=>({
 export const Header = () => {
     const classes = useStyles()
 
-
     return (
-        <div className={classes.root}>
-            <Grid 
-            container 
-            direction="row"
-            style={{height:'75vh'}}
-            spacing={0}
-            >
-                <Grid item lg={5} >
-                <div className={classes.header__img}></div>
-                </Grid>
-                <Grid className={classes.header__rightSide} item lg={7}>
-                    <div className={classes.navigation}>
+        <Grid 
+        container 
+        direction="row"
+        style={{height:'75vh'}}
+        spacing={0}
+        className={classes.root}
+        >
+            <Grid item lg={5} >
+            <div className={classes.header__img}></div>
+            </Grid>
+            <Grid className={classes.header__rightSide} item lg={7}sm={12}>
+                <Grid container direction='column' justify='space-between'>
+                    <Grid item className={classes.navigation}>
                         <Nav/>
                         <Menu/>
-                    </div>
-                        <div className={classes.header__content}>
-                        <div className={classes.header__title}>
+                    </Grid >
+                    <Grid item className={classes.header__content}>
+                        <Grid item className={classes.header__title}>
                             <h1 className={classes.header__titleText}>Zacznij pomagać!<br/>
                             Oddaj niechciane rzeczy w zaufane ręce</h1>
-                        </div>
+                        </Grid>
                         <div className={classes.header__decoration}></div>
-                            <div className={classes.header__control}>
+                        <Grid item className={classes.header__control}>
                             <Button  variant='outlined' className={classes.header__button}>
                                 <Link className={classes.Link} to='/logowanie'>Oddaj rzeczy</Link>
                             </Button>
                             <Button variant='outlined' className={classes.header__button}>
                                 <Link className={classes.Link} to='/logowanie'>Zorganizuj zbiórke</Link>
                             </Button>
-                            </div>
-                    </div>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
-        </div>
+        </Grid>
     )
 }
 

@@ -3,29 +3,45 @@ import Nav from '../Home/Nav';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import firebase from "../../config/fbConfig";
+import LoginDecoration from "../../assets/Decoration.svg"
 import { useHistory, Link } from 'react-router-dom'
 import { UserAuthContext } from '../../contexts/UserAuthContext';
+import { Container, Fab, Button } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const useStyles = makeStyles({
     container:{
+        height: '90vh',
+    },
+    box:{
         display: 'flex',
         flexDirection: 'column',
         alignItems:'center',
         justifyContent:'center',
+        position:'relative',
+        width: 600,
+        margin: '0 auto',
     },
 
-    login__form: {
+    login__form:{
+        width: '100%'
+    },
+    login__formInputs: {
         display: 'flex',
         flexDirection: 'column',
         alignItems:'center',
-        width: '400px'
+        justifyContent:'space-around',
+        width: '400px',
+        padding: '50px 0',
+        background: '#F0F1F1 0% 0% no-repeat padding-box',
+        opacity: 1,
     },
     login:{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         width: 400,
         // '&__decoration':{
         //     background:{
@@ -36,11 +52,11 @@ const useStyles = makeStyles({
         // }
     },
     login__decoration:{
-        background:{
-            image: 'url(../../../../assets/Decoration.svg)'
-        },
+        background: `url(${LoginDecoration})`,
+        backgroundRepeat: 'no-repeat',
         height: 40,
-        width: 250
+        width: 250,
+        margin: '25px 0 60px 0'
     },
     login__control:{
         display:'flex',
@@ -48,7 +64,48 @@ const useStyles = makeStyles({
         alignItems:'center',
         justifyContent: 'space-between',
         marginTop: 10
+    },
+    Fab:{
+        position: 'absolute',
+        zIndex: 1000,
+        top:40,
+        right: 20
+    },
+    login__title:{
+        textAlign: 'center',
+        font: '400 40px/55px Open Sans',
+        letterSpacing: '-0.8px',
+        color: '#3C3C3C',
+        opacity: 1,
+        margin: '70px 0 0 0'
+    
+    },
+    Link:{
+        textDecoration: 'none',
+        font: '300 Open Sans',
+        letterSpacing: 0,
+        color: '#000000',
+        opacity: 1
+    },
+    login__controlBTN:{
+        textDecoration: 'none',
+        font: '300 Open Sans',
+        letterSpacing: 0,
+        color: '#000000',
+        opacity: 1,
+        '&:hover':{
+            background: '#F0F1F1',
+            opacity: 1
+        }
+
+    },
+    fbErr:{
+        fontFamily: 'Open Sans',
+        fontSize: 12,
+        color:'red',
+        opacity: 1
     }
+    
 })
 
 const Login = () => {
@@ -63,6 +120,9 @@ const Login = () => {
             password: false
         }
     })
+
+    const emailError= state.error.email&& 'Email powinien zawierać co najmniej 3 znaki oraz @'
+    const passwordError = state.error.password && 'Hasło powinno zawierać min 5 znaków'
     const {setUser}  = useContext(UserAuthContext)
 
     // console.log(setUser)
@@ -97,22 +157,31 @@ const Login = () => {
         })
     }
     return (
-        <>
+        <Container className={classes.container}>
             <div>
                 <Nav />
-                {/* <Menu />  zamienic na x albo cos do powrotu do homepage*/}
-
             </div>
-            <div className={classes.container}>
+            <div className={classes.box}>
+            <Link to='/'>
+                <Fab  className={classes.Fab} size='small'>
+                    <CloseIcon/>
+                </Fab>
+            </Link>
                 <div className={classes.login} >
-                    <h1>Zaloguj się</h1>
+                    <h1 className={classes.login__title}>Zaloguj się</h1>
                     <div className={classes.login__decoration}></div>
                     <form 
-                    onSubmit={handleOnSubmit}>
-                        <div className={classes.login__form}>
-                            { state.fireError ? <div>{state.fireError}</div> : null}
+                    className={classes.login__form}
+                    onSubmit={handleOnSubmit}
+                    noValidate>
+
+                        <div className={classes.login__formInputs}>
+                            
+                            { state.fireError ? <div className={classes.fbErr}>{state.fireError}</div> : null}
                             <TextField 
-                            className='login__form--email' 
+                            error={state.error.email}
+                            className='login__formEmail' 
+                            helperText={emailError}
                             type='text'
                             name='email'
                             label='Email'
@@ -120,34 +189,32 @@ const Login = () => {
                             value={state.email}
                             onChange={handleOnChange} 
                             />
-                            {(state.error.email)?
-                            <p>Email powinien zawierać co najmniej 3 znaki oraz @</p>
-                            : null}
                             <TextField 
-                            className='login__form--password' 
+                            error={state.error.password}
+                            helperText={passwordError}
+                            className='login__formPassword' 
                             name='password'
                             label='Hasło'
                             id='password'
                             value={state.password}
                             onChange={handleOnChange}
                             />
-                            {
-                            (state.error.password) &&<p>Hasło powinno zawierać min 5 znaków</p>
-                            }
                         </div>
                         <div className={classes.login__control}>
-                            <button>
-                                <Link to='/rejestracja'>Załóż konto</Link>
-                            </button>
-                            <button 
+                            <Button className={classes.login__controlBTN}>
+                                <Link className={classes.Link} to='/rejestracja'>Załóż konto</Link>
+                            </Button>
+                            <Button 
                             type='submit'
-                            className='login__btn'
-                            >Zaloguj się</button>
+                            className={classes.login__controlBTN}
+                            >
+                                Zaloguj się
+                            </Button>
                         </div>
                     </form>
                 </div>
             </div>
-        </>
+        </Container>
     )
 }
 
