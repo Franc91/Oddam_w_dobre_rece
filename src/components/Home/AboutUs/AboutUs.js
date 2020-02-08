@@ -5,14 +5,18 @@ import aboutUsDecoration from '../../../assets/Decoration.svg';
 import Signature from '../../../assets/Signature.svg';
 const useStyle=makeStyles(()=>({
     aboutUs:{
-        flexGrow: 1
-    },
-    aboutUs__leftSide:{
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
+        flexGrow: 1,
+        margin: 0,
         background: '#F0F1F1 no-repeat padding-box',
         opacity: 1
+    },
+    aboutUs__leftSide:{
+        margin:'0 auto',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'center',
+        padding: '180px 0',
     },
 
     aboutUs__photo:{
@@ -30,13 +34,13 @@ const useStyle=makeStyles(()=>({
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-        width: '700px',
         padding: '180px 0'
     },
     aboutUs__title:{
         textAlign: 'center',
         font: '400 38px Open Sans',
         letterSpacing:' -0.76px',
+        width: 700,
         color: '#3C3C3C',
         opacity: 1
     },
@@ -44,6 +48,7 @@ const useStyle=makeStyles(()=>({
         textAlign: 'center',
         font: '400 30px Open Sans',
         letterSpacing: '-0.6px',
+        width: 700,
         color: '#3C3C3C',
         opacity: 1
     },
@@ -67,14 +72,14 @@ export const AboutUs = () => {
     const classes=useStyle()
     return (
         <Grid container direction='row' spacing={0} className={classes.aboutUs} >
-            <Grid item lg={6} sm={12}className={classes.aboutUs__leftSide}>
-                <div className={classes.aboutUs__content}>
+            <Grid item lg={6} className={classes.aboutUs__leftSide}>
+                {/* <div className={classes.aboutUs__content}> */}
                     <h2 className={classes.aboutUs__title}>O nas</h2>
                     <div className={classes.aboutUs__decoration}></div>
                     <span className={classes.aboutUs__description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa blanditiis distinctio, maiores, accusantium vel hic natus laborum quisquam nam.
                     </span>
                     <div className={classes.aboutUs__signature}> </div>
-                </div>        
+                {/* </div>         */}
             </Grid>
             <Grid item lg={6} className={classes.aboutUs__rightSide}> 
                 <div className={classes.aboutUs__photo}></div>
