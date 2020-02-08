@@ -36,7 +36,6 @@ const useStyles = makeStyles(()=>({
     },
     header__titleText:{
         textAlign:'center',
-
         color: '#3C3C3C',
         letterSpacing: '-0.76px',
         font:'400 38px/55px Open Sans'
@@ -91,14 +90,13 @@ export const Header = () => {
         <Grid 
         container 
         direction="row"
-        style={{height:'75vh'}}
         spacing={0}
         className={classes.root}
         >
             <Grid item lg={5} >
             <div className={classes.header__img}></div>
             </Grid>
-            <Grid className={classes.header__rightSide} item lg={7}sm={12}>
+            <Grid className={classes.header__rightSide} item lg={7} sm={12}>
                 <Grid container direction='column' justify='space-between'>
                     <Grid item className={classes.navigation}>
                         <Nav/>
