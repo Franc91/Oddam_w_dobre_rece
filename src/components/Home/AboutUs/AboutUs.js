@@ -28,19 +28,10 @@ const useStyle=makeStyles(()=>({
         boxSizing:'padding-box',
         opacity: 1,       // height: 935
     },
-    aboutUs__content:{
-        margin:'0 auto',
-        display:'flex',
-        flexDirection:'column',
-        alignItems:'center',
-        justifyContent:'center',
-        padding: '180px 0'
-    },
     aboutUs__title:{
         textAlign: 'center',
         font: '400 38px Open Sans',
         letterSpacing:' -0.76px',
-        width: 700,
         color: '#3C3C3C',
         opacity: 1
     },
@@ -48,8 +39,8 @@ const useStyle=makeStyles(()=>({
         textAlign: 'center',
         font: '400 30px Open Sans',
         letterSpacing: '-0.6px',
-        width: 700,
         color: '#3C3C3C',
+        margin: '0 70px',
         opacity: 1
     },
     aboutUs__decoration:{
@@ -76,8 +67,8 @@ export const AboutUs = () => {
                 {/* <div className={classes.aboutUs__content}> */}
                     <h2 className={classes.aboutUs__title}>O nas</h2>
                     <div className={classes.aboutUs__decoration}></div>
-                    <span className={classes.aboutUs__description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa blanditiis distinctio, maiores, accusantium vel hic natus laborum quisquam nam.
-                    </span>
+                    <p className={classes.aboutUs__description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa blanditiis distinctio, maiores, accusantium vel hic natus laborum quisquam nam.
+                    </p>
                     <div className={classes.aboutUs__signature}> </div>
                 {/* </div>         */}
             </Grid>
