@@ -56,6 +56,7 @@ const useStyle=makeStyles(()=>({
         height: 150,
         width: 210,
         marginTop: 40,
+        marginRight:20,
         alignSelf: 'flex-end'
     },
     }))
@@ -64,13 +65,11 @@ export const AboutUs = () => {
     return (
         <Grid container direction='row' spacing={0} className={classes.aboutUs} >
             <Grid item lg={6} className={classes.aboutUs__leftSide}>
-                {/* <div className={classes.aboutUs__content}> */}
-                    <h2 className={classes.aboutUs__title}>O nas</h2>
-                    <div className={classes.aboutUs__decoration}></div>
-                    <p className={classes.aboutUs__description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa blanditiis distinctio, maiores, accusantium vel hic natus laborum quisquam nam.
-                    </p>
-                    <div className={classes.aboutUs__signature}> </div>
-                {/* </div>         */}
+                <h2 className={classes.aboutUs__title}>O nas</h2>
+                <div className={classes.aboutUs__decoration}></div>
+                <p className={classes.aboutUs__description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa blanditiis distinctio, maiores, accusantium vel hic natus laborum quisquam nam.
+                </p>
+                <div className={classes.aboutUs__signature}> </div>
             </Grid>
             <Grid item lg={6} className={classes.aboutUs__rightSide}> 
                 <div className={classes.aboutUs__photo}></div>

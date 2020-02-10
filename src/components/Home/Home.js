@@ -7,6 +7,7 @@ import WhatsGoingOn from './WhatsGoingOn'
 import { makeStyles, Fab } from '@material-ui/core'
 import {animateScroll as scroll} from 'react-scroll'
 import NavigationIcon from '@material-ui/icons/Navigation';
+import Footer from './Contact/Footer/Footer'
 
 const useStyle= makeStyles(()=>({
     root:{
@@ -34,6 +35,7 @@ export const Home = () => {
         <AboutUs className="AboutUs" />
         <WhoWeHelp className="WhoWeHelp" />
         <Contact className="Contact" />
+        <Footer/>
         <Fab className={classes.fabButton} onClick={scrollToTop}>
             <NavigationIcon/>
         </Fab>
