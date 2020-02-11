@@ -6,6 +6,7 @@ import ContactDecoration from '../../../assets/Decoration.svg'
 const useStyle= makeStyles(()=>({
     contact:{
         flexGrow: 1,
+        background: '#FFFFFF'
     },
     contact__img:{
         background: `url(${ContactImg})`,

@@ -5,7 +5,8 @@ import { Grid, makeStyles } from '@material-ui/core'
 
 const useStyle=makeStyles(()=>({
     footer:{
-        flexGrow:1
+        flexGrow:1,
+        background: '#FFFFFF'
     },
     instagram:{
         background:`url(${Facebook})`,

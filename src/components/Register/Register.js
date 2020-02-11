@@ -98,10 +98,10 @@ const Register = () => {
         rePassword:'', 
         fireError: '',
     })
-    const mailErr = (state.email.indexOf('@') > -1 && state.email.length >= 3  ||state.email.length == 0)? false : true;
+    const mailErr = ((state.email.indexOf('@') > -1 && state.email.length >= 3)  ||state.email.length === 0)? false : true;
     const mailAlert = mailErr &&' Email powinien zawierać co najmniej 3 znaki oraz @';
 
-    const passErr = (state.password === state.rePassword && state.password.length > 5 || state.password.length==0 ) ? false : true;
+    const passErr = ((state.password === state.rePassword && state.password.length > 5) || state.password.length ===0 ) ? false : true;
     const passAlert = passErr && 'Hasła nie są   takie same lub hasło zawiera mniej niż 5 znaków'
 
     const logBtn = (((state.email.indexOf('@') > -1 && state.email.length >= 3) && (state.password === state.rePassword && state.password.length > 5)))? true : false;
