@@ -143,7 +143,7 @@ const useStyle= makeStyles(()=>({
         })
     }
     return (
-        <Grid container direction='row' spacing={0} className={classes.contact}>
+        <Grid container direction='row' spacing={0} className={classes.contact} id='contact'>
             <Grid className={classes.leftSide} item lg={6}>
                 <div className={classes.contact__img}>
                     <div className={classes.lefSideBlur}/>

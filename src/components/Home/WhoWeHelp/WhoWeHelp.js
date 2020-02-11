@@ -237,7 +237,8 @@ export const WhoWeHelp = () => {
       });
 
     return (
-        <Grid direction='column'alignItems='center' justify='center' className={classes.whoWeHelp} container>
+        <Grid direction='column'alignItems='center' justify='center' className={classes.whoWeHelp} container
+        id='WhoWeHelp'>
             <Grid className={classes.whoWeHelp__header} item>
                 <h2 className={classes.whoWeHelp__title}>
                     Komu pomagamy?

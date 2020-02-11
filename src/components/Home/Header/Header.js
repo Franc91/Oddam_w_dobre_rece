@@ -92,6 +92,7 @@ export const Header = () => {
         direction="row"
         spacing={0}
         className={classes.root}
+        id='header'
         >
             <Grid item lg={5} >
             <div className={classes.header__img}></div>

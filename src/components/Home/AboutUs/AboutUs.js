@@ -63,7 +63,7 @@ const useStyle=makeStyles(()=>({
 export const AboutUs = () => {
     const classes=useStyle()
     return (
-        <Grid container direction='row' spacing={0} className={classes.aboutUs} >
+        <Grid container direction='row' id='aboutUs' spacing={0} className={classes.aboutUs} >
             <Grid item lg={6} className={classes.aboutUs__leftSide}>
                 <h2 className={classes.aboutUs__title}>O nas</h2>
                 <div className={classes.aboutUs__decoration}></div>
