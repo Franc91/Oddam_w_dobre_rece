@@ -1,37 +1,35 @@
-import React, { createContext, Component } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import firebase from '../config/fbConfig';
 
 export const UserAuthContext = createContext();
 
-export class UserAuthContextProvider extends Component {
+const UserAuthContextProvider = (props) =>{
 // autoryzacja logowanie firebase
-  state = { user: null }
+  const [user, setUsers]  = useState(null)
 
- componentDidMount() {
-    this.authListener()
-  }
+  useEffect(() => {
+    authListener()
+  },[])
   
-  authListener=()=>{
+  const authListener=()=>{
     firebase.auth().onAuthStateChanged((user)=>{
       console.log(user)
         if(user){
-            this.setState({user})
+            setUsers(user)
         }else{
-          this.setState({user:null})
+            setUsers(null)
         }
     });
   }
 
-  setUser = (user) => {
-    this.setState({ user })
+  const setUser = (user) => {
+    setUsers( user )
   }
-  render(){
-      return(
-          <UserAuthContext.Provider value={{...this.state, setUser: this.setUser}}> 
-            {this.props.children}
-          </UserAuthContext.Provider>
-      );
-  }
+  return(
+      <UserAuthContext.Provider value={{...user, setUser:setUser}}> 
+        {props.children}
+      </UserAuthContext.Provider>
+  );
 }
 
 export default UserAuthContextProvider;
