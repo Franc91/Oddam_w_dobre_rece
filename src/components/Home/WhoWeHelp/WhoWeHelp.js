@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
-import { makeStyles, Grid, Button, ListItem, List } from '@material-ui/core';
+import { makeStyles, Grid, Button } from '@material-ui/core';
 import whoWeHelpDecoration from '../../../assets/Decoration.svg'
 import firebase from '../../../config/fbConfig'
 import Pagniation from './subcomponents/Pagniation/Pagniation';
