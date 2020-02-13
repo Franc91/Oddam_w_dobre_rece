@@ -94,6 +94,7 @@ export const WhoWeHelp = () => {
             setState(prev=>({
                 ...prev,
                 data: _.toArray(doc.data()[name]),
+                currentPage: 1,
             }))
         }
     })}

@@ -59,7 +59,8 @@ const Nav = () => {
     }
     useEffect(()=>{
         const db = firebase.firestore()
-        if(user != null){
+        console.log(user, 'dupa')
+        if(user){
             db.collection('users')
             .doc(user.uid)
             .get()
@@ -73,6 +74,8 @@ const Nav = () => {
                 }
             )
         }
+        return () =>  firebase.default.auth().signOut()
+
     },[user])
 
     return (
