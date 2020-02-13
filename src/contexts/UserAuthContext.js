@@ -13,7 +13,6 @@ const UserAuthContextProvider = (props) =>{
   
   const authListener=()=>{
     firebase.auth().onAuthStateChanged((user)=>{
-      console.log(user)
         if(user){
             setUsers(user)
         }else{

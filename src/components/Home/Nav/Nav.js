@@ -59,7 +59,6 @@ const Nav = () => {
     }
     useEffect(()=>{
         const db = firebase.firestore()
-        console.log(user, 'dupa')
         if(user){
             db.collection('users')
             .doc(user.uid)
