@@ -24,6 +24,7 @@ export const FormSteps = ({items, pending}) => {
                     <StepOne 
                     nextStep={nextStep}
                     item={items}
+                    step={step}
                     />
                 )
             case 2:
@@ -32,6 +33,7 @@ export const FormSteps = ({items, pending}) => {
                     nextStep={nextStep}
                     prevStep={prevStep}
                     item={items}
+                    step={step}
                     />
                 )
             case 3:
@@ -40,6 +42,7 @@ export const FormSteps = ({items, pending}) => {
                     nextStep={nextStep}
                     prevStep={prevStep}
                     item={items}
+                    step={step}
                     />
             )
             case 4:
@@ -48,6 +51,7 @@ export const FormSteps = ({items, pending}) => {
                     nextStep={nextStep}
                     prevStep={prevStep}
                     item={items}
+                    step={step}
                     />
             )
             case 5:

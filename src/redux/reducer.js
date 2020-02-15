@@ -7,7 +7,9 @@ const initState={
     items:[
         {
             name: 'Przyklad',
-            status: statuses[0]
+            status: statuses[0],
+            date:'',
+            hour:'',
         }
     ]
 }
