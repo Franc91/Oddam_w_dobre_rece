@@ -89,7 +89,7 @@ const useStyle=makeStyles({
     }
 })
 
-const StepFour = ({nextStep, prevStep, step, item}) => {
+const StepFour = ({nextStep, prevStep, step, state, handleOnChange}) => {
 
     const classes = useStyle()
     const [selectedDate, handleDateChange ] = useState(new Date())

@@ -3,7 +3,7 @@ import FormSteps from './FormSteps'
 import Contact from '../Home/Contact'
 import FormHeader from './FormHeader'
 
-export const Form = ({items, pending}) => {
+export const Form = ({items, pending, add}) => {
     
     return(
         <>

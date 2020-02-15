@@ -3,6 +3,8 @@ import { Button, Checkbox, FormGroup, FormControlLabel, makeStyles, Grid } from 
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import FormStepImg from '../../../../assets/Background-Form.jpg'
 
+
+
 const useStyle=makeStyles({
 
     StepOne:{
@@ -11,7 +13,8 @@ const useStyle=makeStyles({
         backgroundSize: 'cover',
         boxSizing:'padding-box',
         backgroundPosition:'center',
-        flexGrow:1
+        flexGrow:1,
+        height: 883
     },
     attention:{
         backgroundColor: '#FAD648',
@@ -82,7 +85,7 @@ const useStyle=makeStyles({
 
 })
 
-const StepOne = ({nextStep, step}) => {
+const StepOne = ({nextStep, step, add, handleOnChecked, state}) => {
     
     const classes=useStyle()
 
@@ -90,6 +93,13 @@ const StepOne = ({nextStep, step}) => {
         e.preventDefault()
         nextStep()
     }
+
+    // const handleOnSubmit=(e)=>{
+    //     e.preventDefault();
+    //     add(state)
+        
+    // }
+    console.log(state)
 
     return (
         <div>
@@ -103,30 +113,59 @@ const StepOne = ({nextStep, step}) => {
                 <Grid item className={classes.StepOne__Form} >
                 <p className={classes.StepOne__FormStepper}>Krok {step}/4</p>
                 <p className={classes.Form__title}>Zaznacz co chcesz oddać</p>
-                    <form>
+                    <form 
+                    // onSubmit={handleOnSubmit}
+                    >
                         <FormGroup >
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
-                            control={<Checkbox color='secondary'/>} 
+                            control={<Checkbox 
+                                onChange={handleOnChecked('clothesGood')}
+                                checked={state.clothesGood}
+                                value='clothesGood'
+                                color='secondary'
+                                // name='clothesGood'
+                                />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>ubrania, które nadają sie do ponownego użycia</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
-                            control={<Checkbox color='secondary'/>} 
+                            control={<Checkbox 
+                                onChange={handleOnChecked('clothesBad')}
+                                checked={state.clothesBad}
+                                color='secondary'
+                                value='clothesBad'
+                                />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>ubrania do wyrzucenia</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
-                            control={<Checkbox color='secondary'/>} 
+                            control={<Checkbox 
+                                onChange={handleOnChecked('toys')}
+                                color='secondary'
+                                checked={state.toys}
+                                value='toys'
+                                />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>zabawki</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
-                            control={<Checkbox color='secondary'/>} 
+                            control={<Checkbox 
+                                onChange={handleOnChecked('books')}
+                                color='secondary'
+                                checked={state.books}
+                                value='books'
+                                />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>książki</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
-                            control={<Checkbox color='secondary'/>} 
+                            control={<Checkbox 
+                                onChange={handleOnChecked('other')}
+                                color='secondary'
+                                checked={state.other}
+                                value='other'
+                                />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>inne</p>}/>
                         </FormGroup>
                         <Button
+                        type='submit'
                         className={classes.StepOne__btn}
                         onClick={next}
                         >

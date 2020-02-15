@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, NativeSelect, Grid, makeStyles } from '@material-ui/core'
+import { Button, NativeSelect, Grid, makeStyles, Select } from '@material-ui/core'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import FormStepImg from '../../../../assets/Background-Form.jpg'
 
@@ -73,7 +73,7 @@ const useStyle = makeStyles({
     }
 })
 
-const StepTwo = ({nextStep, prevStep, step}) => {
+const StepTwo = ({nextStep, prevStep, step, state, handleOnChange}) => {
 
     const classes=useStyle()
 
@@ -86,7 +86,7 @@ const StepTwo = ({nextStep, prevStep, step}) => {
         e.preventDefault();
         prevStep()
     }
-
+    console.log(state)
     return (
         <div>
             <div className={classes.attention}>
@@ -101,7 +101,7 @@ const StepTwo = ({nextStep, prevStep, step}) => {
                 <p className={classes.StepTwo__FormStepper}>Krok {step}/4</p>
                 <p className={classes.Form__title}>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</p>
                     <form>
-                        <NativeSelect>
+                        <NativeSelect name='bags' value={state.bags} onChange={handleOnChange('bags')}>
                             <option value=''>
                                 --Wybierz--
                             </option>

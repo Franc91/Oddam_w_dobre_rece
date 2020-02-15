@@ -66,7 +66,7 @@ const useStyle=makeStyles({
     }
 })
 
-const StepThree = ({nextStep, prevStep, step}) => {
+const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
     const classes = useStyle()
 
     const next = (e) =>{
@@ -79,6 +79,7 @@ const StepThree = ({nextStep, prevStep, step}) => {
         prevStep()
     }
 
+    console.log(state)
     return (
         <div>
             step3
@@ -94,7 +95,7 @@ const StepThree = ({nextStep, prevStep, step}) => {
                     <p className={classes.StepThree__FormStepper}>Krok {step}/4</p>
                     <p className={classes.Form__title}>Lokalizacja:</p>
                     <form>
-                        <NativeSelect>
+                        <NativeSelect name='localization' value={state.localization} onChange={handleOnChange('localization')}>
                             <option value=''>
                                 --Wybierz--
                             </option>
@@ -106,7 +107,11 @@ const StepThree = ({nextStep, prevStep, step}) => {
                         </NativeSelect>
                         <p>Komu chcesz pomóc?</p>
                         
-                        <TextField label='Wpisz nazwę konkretnej organizacji (opcjonalnie)' />
+                        <TextField 
+                        label='Wpisz nazwę konkretnej organizacji (opcjonalnie)' 
+                        name='nameOrganization' 
+                        value={state.nameOrganization}
+                        onChange={handleOnChange('nameOrganization')}/>
                     
                         <Button
                         className={classes.StepThree__btn}

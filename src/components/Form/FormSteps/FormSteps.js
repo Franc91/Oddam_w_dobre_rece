@@ -6,9 +6,23 @@ import Summary from './Summary'
 import StepFour from './StepFour'
 import ThankYou from './ThankYou/ThankYou'
 
-export const FormSteps = ({items, pending}) => {
+export const FormSteps = () => {
     const [step, setStep] = useState (1)
-    console.log(step)
+    const [state, setState]= useState({
+        clothesGood: false,
+        clothesBad: false,
+        books: false,
+        toys: false,
+        other: false,
+        bags:'',
+        localization:'',
+        nameOrganization:'',
+        street:'',
+        city:'',
+        zipCode:'',
+        phoneNumber:'',
+        date:''
+    })
 
     const nextStep = () =>{
         setStep(step + 1)
@@ -18,13 +32,22 @@ export const FormSteps = ({items, pending}) => {
         setStep(step-1)
     }
 
+    const handleOnChecked = name => event => {
+        setState({ ...state, [name]: event.target.checked });
+      };
+
+    const handleOnChange = name => event => {
+    setState({ ...state, [name]: event.target.value });
+    };
+
         switch (step){
             case 1:
                 return(
                     <StepOne 
                     nextStep={nextStep}
-                    item={items}
                     step={step}
+                    handleOnChecked={handleOnChecked}
+                    state={state}
                     />
                 )
             case 2:
@@ -32,8 +55,9 @@ export const FormSteps = ({items, pending}) => {
                     <StepTwo
                     nextStep={nextStep}
                     prevStep={prevStep}
-                    item={items}
                     step={step}
+                    handleOnChange={handleOnChange}
+                    state={state}
                     />
                 )
             case 3:
@@ -41,8 +65,9 @@ export const FormSteps = ({items, pending}) => {
                     <StepThree 
                     nextStep={nextStep}
                     prevStep={prevStep}
-                    item={items}
                     step={step}
+                    handleOnChange={handleOnChange}
+                    state={state}
                     />
             )
             case 4:
@@ -50,8 +75,9 @@ export const FormSteps = ({items, pending}) => {
                     <StepFour 
                     nextStep={nextStep}
                     prevStep={prevStep}
-                    item={items}
                     step={step}
+                    handleOnChange={handleOnChange}
+                    state={state}
                     />
             )
             case 5:
@@ -59,7 +85,6 @@ export const FormSteps = ({items, pending}) => {
                     <Summary 
                     nextStep={nextStep}
                     prevStep={prevStep}
-                    item={items}
                     />
 
             )
@@ -67,7 +92,6 @@ export const FormSteps = ({items, pending}) => {
                 return(
                     <ThankYou 
                     prevStep={prevStep}
-                    item={items}
                     />
                 )
             default: 

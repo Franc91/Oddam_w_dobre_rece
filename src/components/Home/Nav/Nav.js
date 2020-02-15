@@ -58,9 +58,9 @@ const Nav = () => {
         })
     }
     useEffect(()=>{
-        const db = firebase.firestore()
+        // const db = firebase.firestore()
         if(user){
-            db.collection('users')
+            firebase.firestore().collection('users')
             .doc(user.uid)
             .get()
             .then(doc =>{
@@ -73,9 +73,8 @@ const Nav = () => {
                 }
             )
         }
-        return () =>  firebase.default.auth().signOut()
-
     },[user])
+    console.log(user)
 
     return (
         <nav className={classes.nav} >
