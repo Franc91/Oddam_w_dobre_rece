@@ -26,7 +26,7 @@ const useStyle=makeStyles({
         flexDirection: 'column',
         alignItems:'flex-start',
         justifyContent:'center',
-        margin: '50px 0 50px 150px'
+        margin: '50px 150px 50px 150px'
     },
     attention__title:{
         textAlign: 'left',
@@ -82,7 +82,6 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
     console.log(state)
     return (
         <div>
-            step3
             <div className={classes.attention}>
                 <div className={classes.attention__content}>
                     <h3 className={classes.attention__title}><ErrorOutlineIcon/> Ważne</h3>

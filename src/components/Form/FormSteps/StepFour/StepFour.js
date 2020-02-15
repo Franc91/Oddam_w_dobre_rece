@@ -19,7 +19,8 @@ const useStyle=makeStyles({
         backgroundSize: 'cover',
         boxSizing:'padding-box',
         backgroundPosition:'center',
-        flexGrow:1
+        flexGrow:1,
+        height: 883
     },
     attention:{
         backgroundColor: '#FAD648',
@@ -34,7 +35,7 @@ const useStyle=makeStyles({
         flexDirection: 'column',
         alignItems:'flex-start',
         justifyContent:'center',
-        margin: '50px 0 50px 150px'
+        margin: '50px 150px 50px 150px'
     },
     attention__title:{
         textAlign: 'left',
@@ -53,9 +54,6 @@ const useStyle=makeStyles({
         margin: 5,
     },
     StepFour__Form:{
-        display:'flex',
-        flexDirection:'row',
-
         marginLeft: 150
     },
     StepFour__FormContent:{
@@ -113,11 +111,10 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
                     <p className={classes.attention__description}>Jeżeli wiesz komu chcesz pomóc, możesz wpisać nazwę organizacji w wyszukiwarce. Możesz filtrować organizacje po ich lokalizacji bądź celu ich pomocy</p>
                 </div>
             </div>
-
             <Grid className={classes.StepFour} container direction='column'>
+                <Grid item className={classes.StepFour__Form}>
                 <p className={classes.StepFour__FormStepper}>Krok {step}/4</p>
                 <p className={classes.Form__title}>Podaj adres oraz termin odbioru rzecz przez kuriera</p>
-                <Grid item className={classes.StepFour__Form}>
                     <form className={classes.StepFour__FormContent}>
                         <div className={classes.stepFour_formBox}>
                             <h4>Adres odbioru:</h4>

@@ -29,7 +29,7 @@ const useStyle=makeStyles({
         flexDirection: 'column',
         alignItems:'flex-start',
         justifyContent:'center',
-        margin: '50px 0 50px 150px'
+        margin: '50px 150px 50px 150px'
     },
     attention__title:{
         textAlign: 'left',
