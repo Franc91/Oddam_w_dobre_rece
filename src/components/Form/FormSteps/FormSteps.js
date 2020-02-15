@@ -21,8 +21,12 @@ export const FormSteps = () => {
         city:'',
         zipCode:'',
         phoneNumber:'',
-        date:''
+        date:'',
+        hour:'',
+        addInfo:''
     })
+    const [selectedDate, handleDateChange ] = useState(new Date())
+    const [selectedHour, handleHourChange ] = useState(new Date())
 
     const nextStep = () =>{
         setStep(step + 1)
@@ -78,6 +82,10 @@ export const FormSteps = () => {
                     step={step}
                     handleOnChange={handleOnChange}
                     state={state}
+                    selectedDate={selectedDate}
+                    handleDateChange={handleDateChange}
+                    selectedHour={selectedHour}
+                    handleHourChange={handleHourChange}
                     />
             )
             case 5:

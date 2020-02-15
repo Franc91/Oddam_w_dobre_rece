@@ -89,11 +89,11 @@ const useStyle=makeStyles({
     }
 })
 
-const StepFour = ({nextStep, prevStep, step, state, handleOnChange}) => {
+const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateChange, selectedHour, handleHourChange, selectedDate}) => {
 
     const classes = useStyle()
-    const [selectedDate, handleDateChange ] = useState(new Date())
-    const [selectedHour, handleHourChange ] = useState(new Date())
+    // const [selectedDate, handleDateChange ] = useState(new Date())
+    // const [selectedHour, handleHourChange ] = useState(new Date())
 
     const next = (e) =>{
         e.preventDefault();
@@ -104,7 +104,7 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange}) => {
         e.preventDefault();
         prevStep()
     }
-
+ console.log(state, selectedDate, selectedHour)
     return (
         <div>
             <div className={classes.attention}>
@@ -121,10 +121,26 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange}) => {
                     <form className={classes.StepFour__FormContent}>
                         <div className={classes.stepFour_formBox}>
                             <h4>Adres odbioru:</h4>
-                            <TextField label='Ulica'/>
-                            <TextField label='Miasto'/>
-                            <TextField label='Kod-pocztowy'/>
-                            <TextField label='Numer telefonu'/>
+                            <TextField 
+                            label='Ulica'
+                            name='street' 
+                            value={state.street}
+                            onChange={handleOnChange('street')}/>
+                            <TextField 
+                            label='Miasto'
+                            name='city' 
+                            value={state.city}
+                            onChange={handleOnChange('city')}/>
+                            <TextField 
+                            label='Kod-pocztowy'
+                            name='zipCode' 
+                            value={state.zipCode}
+                            onChange={handleOnChange('zipCode')}/>
+                            <TextField 
+                            label='Numer telefonu'
+                            name='phoneNumber' 
+                            value={state.phoneNumber}
+                            onChange={handleOnChange('phoneNumber')}/>
                         </div>
                         <div className={classes.stepFour_formBox}>
                         <h4>Adres odbioru:</h4>
@@ -143,7 +159,12 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange}) => {
                                     onChange={handleHourChange}
                                 />
                             </MuiPickersUtilsProvider>
-                            <TextField label='Uwagi dla kuriera' multiline />
+                            <TextField 
+                            label='Uwagi dla kuriera' 
+                            name='addInfo' 
+                            value={state.addInfo}
+                            onChange={handleOnChange('addInfo')}
+                            multiline />
                         </div>
                         <div>
                             <Button
