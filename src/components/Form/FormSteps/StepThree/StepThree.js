@@ -90,7 +90,7 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
             </div>
 
             <Grid container direction='column' className={classes.StepThree}>
-                <Grid lg={7} item className={classes.StepThree__Form}>
+                <Grid lg={5} item className={classes.StepThree__Form}>
                     <p className={classes.StepThree__FormStepper}>Krok {step}/4</p>
                     <p className={classes.Form__title}>Lokalizacja:</p>
                     <form>
@@ -111,18 +111,19 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
                         name='nameOrganization' 
                         value={state.nameOrganization}
                         onChange={handleOnChange('nameOrganization')}/>
+
+                        <Button
+                        className={classes.StepThree__btn}
+                        onClick={prev}
+                        >
+                            Cofnij
+                        </Button>
                     
                         <Button
                         className={classes.StepThree__btn}
                         onClick={next}
                         >
                             Dalej
-                        </Button>
-                        <Button
-                        className={classes.StepThree__btn}
-                        onClick={prev}
-                        >
-                            Cofnij
                         </Button>
                     </form>
                 </Grid>

@@ -70,6 +70,28 @@ const useStyle = makeStyles({
         color: '#3C3C3C',
         opacity: 1,
         marginBottom: 50
+    },
+    form:{
+        display:'flex',
+        flexDirection: 'column',
+
+    },
+    formControl:{
+        justifyContent:'center',
+        margin: 150
+    },
+    formContent:{
+        display: 'flex',
+        flexDirection:'row',
+        justifyContent:'flex-start'
+    },
+    formTitle:{
+        textAlign: 'left',
+        font: '300 24px Open Sans',
+        letterSpacing: 0,
+        color: '#000000',
+        opacity: 1,
+        marginRight: 50
     }
 })
 
@@ -97,32 +119,39 @@ const StepTwo = ({nextStep, prevStep, step, state, handleOnChange}) => {
             </div>
             
             <Grid container direction='column' className={classes.StepTwo}>
-                <Grid item className={classes.StepTwo__Form}>
+                <Grid item className={classes.StepTwo__Form} lg={6}>
                 <p className={classes.StepTwo__FormStepper}>Krok {step}/4</p>
                 <p className={classes.Form__title}>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</p>
-                    <form>
-                        <NativeSelect name='bags' value={state.bags} onChange={handleOnChange('bags')}>
-                            <option value=''>
-                                --Wybierz--
-                            </option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </NativeSelect>
-                        <Button
-                        onClick={next}
-                        className={classes.StepTwo__btn}
-                        >
-                            Dalej
-                        </Button>
-                        <Button
-                        onClick={prev}
-                        className={classes.StepTwo__btn}
-                        >
-                            Cofnij
-                        </Button>
+                    <form className={classes.form}>
+                        <div className={classes.formContent}>
+                            <p className={classes.formTitle}>Liczba 60l worków:</p>
+                            <NativeSelect name='bags' value={state.bags} onChange={handleOnChange('bags')}>
+                                <option value=''>
+                                    --Wybierz--
+                                </option>
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                            </NativeSelect>
+                        </div>
+
+                        <div className={classes.formControl}>
+                            <Button
+                            onClick={prev}
+                            className={classes.StepTwo__btn}
+                            >
+                                Cofnij
+                            </Button>
+                            <Button
+                            onClick={next}
+                            className={classes.StepTwo__btn}
+                            >
+                                Dalej
+                            </Button>
+
+                        </div>
                     </form>
                 </Grid>
                 <Grid item className={classes.FormStepImg}></Grid>

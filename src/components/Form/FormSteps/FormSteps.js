@@ -91,6 +91,7 @@ export const FormSteps = () => {
             case 5:
                 return(
                     <Summary 
+                    state={state}
                     nextStep={nextStep}
                     prevStep={prevStep}
                     />
