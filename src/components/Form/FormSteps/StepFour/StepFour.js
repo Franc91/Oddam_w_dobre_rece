@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Grid, TextField, makeStyles } from '@material-ui/core'
+import firebase from '../../../../config/fbConfig'
+import { UserAuthContext } from '../../../../contexts/UserAuthContext'
 import DateFnsUtils from '@date-io/date-fns';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { MuiPickersUtilsProvider,DatePicker, TimePicker } from "@material-ui/pickers";
@@ -112,17 +114,49 @@ const useStyle=makeStyles({
 
 const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateChange, selectedHour, handleHourChange, selectedDate}) => {
 
+    const { user } = useContext(UserAuthContext)
+
     const classes = useStyle()
 
-    const next = (e) =>{
-        e.preventDefault();
-        nextStep()
+    const sendForm = (e)=>{
+        e.preventDefault()
+        if(user !== undefined){
+            firebase.firestore().collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .set({formData:{
+                clothesGood: state.clothesGood,
+                clothesBad: state.clothesBad,
+                books: state.books,
+                toys: state.toys,
+                other: state.other,
+                bags: state.bags,
+                localization: state.localization,
+                nameOrganization: state.nameOrganization,
+                street: state.street,
+                city: state.city,
+                zipCode: state.zipCode,
+                phoneNumber: state.phoneNumber,
+                date: state.date,
+                time: state.hour,
+                addInfo: state.addInfo
+                }
+                },{merge: true}
+            )
+            .then(()=>{
+                nextStep()
+            })
+            .catch(()=>{
+                console.log('error')
+            })
+        }
     }
 
     const prev = (e) =>{
         e.preventDefault();
         prevStep()
     }
+
+
  console.log(state, selectedDate, selectedHour)
     return (
         <div>
@@ -189,7 +223,7 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
                         <div>
                             <Button
                             className={classes.StepFour__btn}
-                            onClick={next}
+                            onClick={sendForm}
                             >
                                 Dalej
                             </Button>

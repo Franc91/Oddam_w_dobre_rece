@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles, Grid } from '@material-ui/core'
 import simpleStepsDecoration from '../../../../assets/Decoration.svg'
 import Icon1 from '../../../../assets/Icon-1.svg'
@@ -7,6 +7,7 @@ import Icon3 from '../../../../assets/Icon-3.svg'
 import Icon4 from '../../../../assets/Icon-4.svg'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import { UserAuthContext } from '../../../../contexts/UserAuthContext'
 
 const useStyle=makeStyles(()=>({
     simpleStepsContentRoot:{
@@ -116,6 +117,7 @@ const useStyle=makeStyles(()=>({
 
 const SimpleSteps = () => {
     const classes = useStyle()
+    const { user } = useContext(UserAuthContext)
     return (
         <>
         <div className={classes.simpleSteps}>
@@ -161,7 +163,12 @@ const SimpleSteps = () => {
             </Grid>
         </Grid>
         <div className={classes.simpleStepsControl}>
-            <Button variant='outlined'><Link className={classes.Link} to='/logowanie'> oddaj rzeczy</Link></Button>
+            {
+                user?
+                <Button variant='outlined'><Link className={classes.Link} to='/oddaj-rzeczy'> oddaj rzeczy</Link></Button>
+                : <Button variant='outlined'><Link className={classes.Link} to='/logowanie'> oddaj rzeczy</Link></Button>
+            }
+            
         </div>
         </>
     )

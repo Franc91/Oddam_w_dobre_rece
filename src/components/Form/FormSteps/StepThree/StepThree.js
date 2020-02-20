@@ -98,11 +98,11 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
                             <option value=''>
                                 --Wybierz--
                             </option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
+                            <option value='Warszawa'>Warszawa</option>
+                            <option value='Poznań'>Poznań</option>
+                            <option value='Kraków'>Kraków</option>
+                            <option value='Gdańsk'>Gdańsk</option>
+                            <option value='Rzeszów'>Rzeszów</option>
                         </NativeSelect>
                         <p>Komu chcesz pomóc?</p>
                         

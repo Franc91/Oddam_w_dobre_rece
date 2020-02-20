@@ -12,7 +12,8 @@ const useStyle = makeStyles({
         boxSizing:'padding-box',
         backgroundPosition:'center',
         flexGrow:1,
-        height: 883
+        height: 883,
+        // position: 'relative'
     },
     iconShirt:{
         width: 50,
@@ -87,7 +88,7 @@ const useStyle = makeStyles({
         }
     },
     summary__control:{
-
+        // position:'absolute',
     },
     summary__btn:{
         textAlign: 'center',

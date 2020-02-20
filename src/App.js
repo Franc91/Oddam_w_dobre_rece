@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './containers/Form';
+import Form from './components/Form/Form';
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
