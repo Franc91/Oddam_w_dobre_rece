@@ -77,8 +77,8 @@ const useStyle = makeStyles({
 
     },
     formControl:{
-        justifyContent:'center',
-        margin: 150
+        justifyContent:'flex-start',
+        marginTop: 150
     },
     formContent:{
         display: 'flex',

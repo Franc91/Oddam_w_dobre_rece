@@ -223,15 +223,15 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
                         <div>
                             <Button
                             className={classes.StepFour__btn}
-                            onClick={sendForm}
-                            >
-                                Dalej
-                            </Button>
-                            <Button
-                            className={classes.StepFour__btn}
                             onClick={prev}
                             >
                                 Cofnij
+                            </Button>
+                            <Button
+                            className={classes.StepFour__btn}
+                            onClick={sendForm}
+                            >
+                                Dalej
                             </Button>
                         </div>
                     </form>

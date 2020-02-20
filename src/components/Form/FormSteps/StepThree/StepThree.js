@@ -63,7 +63,22 @@ const useStyle=makeStyles({
         color: '#3C3C3C',
         opacity: 1,
         marginBottom: 50
+    },
+    Form__title:{
+        textAlign: 'left',
+        font: '650 36px Open Sans',
+        letterSpacing: 0,
+        color: '#000000',
+        opacity: 1
+    },
+    WhoYouHelp:{
+        textAlign: 'left',
+        font: '650 24px Open Sans',
+        letterSpacing: 0,
+        color: '#000000',
+        opacity: 1
     }
+
 })
 
 const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
@@ -104,11 +119,12 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
                             <option value='Gdańsk'>Gdańsk</option>
                             <option value='Rzeszów'>Rzeszów</option>
                         </NativeSelect>
-                        <p>Komu chcesz pomóc?</p>
+                        <p className={classes.WhoYouHelp}>Wpisz nazwę konkretnej organizacji (opcjonalnie)</p>
                         
                         <TextField 
-                        label='Wpisz nazwę konkretnej organizacji (opcjonalnie)' 
                         name='nameOrganization' 
+                        multiline
+                        fullWidth
                         value={state.nameOrganization}
                         onChange={handleOnChange('nameOrganization')}/>
 
