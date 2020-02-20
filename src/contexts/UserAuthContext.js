@@ -3,7 +3,7 @@ import firebase from '../config/fbConfig';
 
 export const UserAuthContext = createContext();
 
-const UserAuthContextProvider = (props) =>{
+const UserAuthContextProvider = ({children}) =>{
 // autoryzacja logowanie firebase
   const [user, setUsers]  = useState(null)
 
@@ -13,7 +13,6 @@ const UserAuthContextProvider = (props) =>{
   
   const authListener=()=>{
     firebase.auth().onAuthStateChanged((user)=>{
-      console.log(user)
         if(user){
             setUsers(user)
         }else{
@@ -22,12 +21,12 @@ const UserAuthContextProvider = (props) =>{
     });
   }
 
-  const setUser = (user) => {
+  const setUser= (user) => {
     setUsers( user )
   }
   return(
-      <UserAuthContext.Provider value={{...user, setUser:setUser}}> 
-        {props.children}
+      <UserAuthContext.Provider value={{...user, setUser}}> 
+        {children}
       </UserAuthContext.Provider>
   );
 }

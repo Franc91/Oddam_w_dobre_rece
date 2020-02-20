@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Menu from '../Menu'
 import Nav from '../Nav'
@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import HomeImg from '../../../assets/Home-Hero-Image.jpg'
 import HomeDecoration from '../../../assets/Decoration.svg'
 import Button from '@material-ui/core/Button';
+import { UserAuthContext } from '../../../contexts/UserAuthContext'
 
 const useStyles = makeStyles(()=>({
     root:{
@@ -85,6 +86,7 @@ const useStyles = makeStyles(()=>({
 
 export const Header = () => {
     const classes = useStyles()
+    const { user } = useContext(UserAuthContext)
 
     return (
         <Grid 
@@ -111,7 +113,10 @@ export const Header = () => {
                         <div className={classes.header__decoration}></div>
                         <Grid item className={classes.header__control}>
                             <Button  variant='outlined' className={classes.header__button}>
-                                <Link className={classes.Link} to='/logowanie'>Oddaj rzeczy</Link>
+                                {user?
+                                <Link className={classes.Link} to='/oddaj-rzeczy'>Oddaj rzeczy</Link>
+                                :<Link className={classes.Link} to='/logowanie'>Oddaj rzeczy</Link>
+                                }
                             </Button>
                             <Button variant='outlined' className={classes.header__button}>
                                 <Link className={classes.Link} to='/logowanie'>Zorganizuj zbiórke</Link>

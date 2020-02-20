@@ -58,9 +58,9 @@ const Nav = () => {
         })
     }
     useEffect(()=>{
-        const db = firebase.firestore()
-        if(user != null){
-            db.collection('users')
+        // const db = firebase.firestore()
+        if(user){
+            firebase.firestore().collection('users')
             .doc(user.uid)
             .get()
             .then(doc =>{
@@ -74,6 +74,7 @@ const Nav = () => {
             )
         }
     },[user])
+    console.log(user)
 
     return (
         <nav className={classes.nav} >

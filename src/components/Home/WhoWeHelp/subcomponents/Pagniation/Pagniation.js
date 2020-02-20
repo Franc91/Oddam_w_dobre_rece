@@ -40,7 +40,7 @@ import { makeStyles, Button } from '@material-ui/core';
 
     return (
         <div id='page-numbers' className={classes.whoWeHelp__organizationNumberPage}>
-            {
+            {   pageNumbers.length > 1 ?
                 pageNumbers.map(number=>(
                     <Button className={classes.whoWeHelp__NumberPageButton}
                     variant="outlined"
@@ -51,6 +51,7 @@ import { makeStyles, Button } from '@material-ui/core';
                         {number}
                     </Button>
                 ))
+                : null
             }
         </div>
 
