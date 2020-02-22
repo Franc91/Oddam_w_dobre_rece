@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, NativeSelect, Grid, TextField, makeStyles } from '@material-ui/core'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import FormStepImg from '../../../../assets/Background-Form.jpg'
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const useStyle=makeStyles({
     StepThree:{
@@ -77,11 +79,15 @@ const useStyle=makeStyles({
         letterSpacing: 0,
         color: '#000000',
         opacity: 1
-    }
+    },
+    StepThree__ToggleButtons:{
+        backgroundColor: 'transparent'
+    },
+
 
 })
 
-const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
+const StepThree = ({nextStep, prevStep, step, state, handleOnChange, handleWhoHelp, whoHelp}) => {
     const classes = useStyle()
 
     const next = (e) =>{
@@ -94,7 +100,7 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
         prevStep()
     }
 
-    console.log(state)
+    console.log(state, whoHelp)
     return (
         <div>
             <div className={classes.attention}>
@@ -119,14 +125,51 @@ const StepThree = ({nextStep, prevStep, step, state, handleOnChange}) => {
                             <option value='Gdańsk'>Gdańsk</option>
                             <option value='Rzeszów'>Rzeszów</option>
                         </NativeSelect>
-                        <p className={classes.WhoYouHelp}>Wpisz nazwę konkretnej organizacji (opcjonalnie)</p>
-                        
-                        <TextField 
-                        name='nameOrganization' 
-                        multiline
-                        fullWidth
-                        value={state.nameOrganization}
-                        onChange={handleOnChange('nameOrganization')}/>
+                        <p className={classes.WhoYouHelp}>
+                            Komu chcesz pomóc
+                        </p>   
+                        <ToggleButtonGroup
+                            classes={{
+                            root: classes.StepThree__ToggleButtons
+                            }}
+                        name='whoHelp'
+                        value={whoHelp}
+                        onChange={handleWhoHelp}>
+                            <ToggleButton
+                            className={classes.selected
+                            }value='dzieciom'>
+                                dzieciom
+                            </ToggleButton>
+                            <ToggleButton 
+                            className={classes.ToggleButton}
+                            value='samotnym matkom'>
+                                samotnym matkom
+                            </ToggleButton>
+                            <ToggleButton 
+                            className={classes.ToggleButton}
+                            value = 'bezdomnym'>
+                                bezdomnym
+                            </ToggleButton>
+                            <ToggleButton 
+                            className={classes.ToggleButton}
+                            value='niepełnosprawnym'>
+                                niepełnosprawnym
+                            </ToggleButton>
+                            <ToggleButton 
+                            className={classes.ToggleButton}
+                            value='osobom starszym'>
+                                osobom starszym
+                            </ToggleButton>
+                        </ToggleButtonGroup>
+                        <p className={classes.WhoYouHelp}>
+                            Wpisz nazwę konkretnej organizacji (opcjonalnie)
+                        </p>            
+                            <TextField 
+                            name='nameOrganization' 
+                            multiline
+                            fullWidth
+                            value={state.nameOrganization}
+                            onChange={handleOnChange('nameOrganization')}/>
 
                         <Button
                         className={classes.StepThree__btn}

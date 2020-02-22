@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Grid, makeStyles } from '@material-ui/core'
 import ShirtIcon from '../../../../assets/Icon-1.svg'
 import ArrowIcon from '../../../../assets/Icon-4.svg'
 import FormStepImg from '../../../../assets/Background-Form.jpg'
+import firebase from '../../../../config/fbConfig'
+import { UserAuthContext } from '../../../../contexts/UserAuthContext'
+import ErrorIcon from '@material-ui/icons/Error';
 
 const useStyle = makeStyles({
     summary:{
@@ -105,18 +108,58 @@ const useStyle = makeStyles({
         letterSpacing: 0,
         color: '#000000',
         opacity: 1,
+    },
+    error:{
+        font: '400 16px Open Sans',
+        letterSpacing: 0,
+        color: 'red',
+        opacity: 1,
+    },
+    errorText:{
+        margin: 0
     }
-
-
-
-
 })
 
-const Summary = ({nextStep, prevStep, state}) => {
+const Summary = ({nextStep, prevStep, state, selectedHour, selectedDate}) => {
     const classes = useStyle()
-    const next = (e) =>{
-        e.preventDefault();
-        nextStep()
+    const { user } = useContext(UserAuthContext)
+    const [ err,setErr ] = useState(null)
+
+    const sendForm = (e)=>{
+        e.preventDefault()
+        if(user !== undefined){
+            firebase.firestore().collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .set({formData:{
+                clothesGood: state.clothesGood,
+                clothesBad: state.clothesBad,
+                books: state.books,
+                toys: state.toys,
+                other: state.other,
+                bags: state.bags,
+                localization: state.localization,
+                nameOrganization: state.nameOrganization,
+                street: state.street,
+                city: state.city,
+                zipCode: state.zipCode,
+                phoneNumber: state.phoneNumber,
+                date: selectedDate,
+                time: selectedHour,
+                addInfo: state.addInfo
+                // whoHelp: 
+                }
+                },{merge: true}
+            )
+            .then(()=>{
+                nextStep()
+                console.log('wyslane')
+            })
+            .catch(()=>{
+                console.log('error')
+            })
+        }else{
+            setErr('Musisz być zalogowany, aby wysłać zgłoszenie')
+        }
     }
 
     const prev = (e) =>{
@@ -169,17 +212,24 @@ const Summary = ({nextStep, prevStep, state}) => {
                     </div>
                 </div>
                 <div className={classes.summary__control}>
-                    <Button
-                    className={classes.summary__btn}
-                    onClick={next}
-                    >
-                        Dalej
-                    </Button>
+                    {
+                        err?
+                        <div className={classes.error}>
+                            <ErrorIcon large/> 
+                            <p className={classes.errorText}>{err}</p></div>
+                        : null
+                    }
                     <Button
                     className={classes.summary__btn}
                     onClick={prev}
                     >
                         Cofnij
+                    </Button>
+                    <Button
+                    className={classes.summary__btn}
+                    onClick={sendForm}
+                    >
+                        Wyślij
                     </Button>
                 </div>
 

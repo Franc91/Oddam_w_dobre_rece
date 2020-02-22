@@ -27,6 +27,13 @@ export const FormSteps = () => {
     })
     const [selectedDate, handleDateChange ] = useState(new Date())
     const [selectedHour, handleHourChange ] = useState(new Date())
+    const [whoHelp, setWhoHelp] = React.useState(() => [])
+
+    const handleWhoHelp = (event, newWhoHelps) => {
+      if (newWhoHelps.length) {
+        setWhoHelp(newWhoHelps);
+      }
+    };
 
     const nextStep = () =>{
         setStep(step + 1)
@@ -70,7 +77,9 @@ export const FormSteps = () => {
                     nextStep={nextStep}
                     prevStep={prevStep}
                     step={step}
+                    handleWhoHelp={handleWhoHelp}
                     handleOnChange={handleOnChange}
+                    whoHelp={whoHelp}
                     state={state}
                     />
             )
