@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button, Grid, TextField, makeStyles } from '@material-ui/core'
-import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from '@date-io/moment';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { MuiPickersUtilsProvider,DatePicker, TimePicker } from "@material-ui/pickers";
 import FormStepImg from '../../../../assets/Background-Form.jpg'
+import moment from 'moment';
+import "moment/locale/pl";
 
 
 const useStyle=makeStyles({
@@ -112,6 +114,7 @@ const useStyle=makeStyles({
 
 const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateChange, selectedHour, handleHourChange, selectedDate}) => {
 
+    const locale = moment().locale('pl')
     const classes = useStyle()
 
     const next = (e) =>{
@@ -125,7 +128,7 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
     }
 
 
- console.log(state, selectedDate, selectedHour)
+ console.log(selectedDate)
     return (
         <div>
             <div className={classes.attention}>
@@ -165,16 +168,19 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
                             </div>
                             <div className={classes.stepFour_formBox}>
                             <h4 className={classes.stepFour_formBoxTitle}>Adres odbioru:</h4>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <MuiPickersUtilsProvider moment={moment} utils={MomentUtils} locale={locale}>
                                     <DatePicker
+                                        name='selectedDate'
                                         label='Data odbioru'
+                                        format='LL'
                                         value={selectedDate}
-                                        onChange={handleDateChange}
+                                        onChange={date => handleDateChange(date)}
                                         animateYearScrolling
                                     />
                                     <TimePicker
                                         clearable
                                         ampm={false}
+                                        format='HH:mm'
                                         label="Godzina odbioru"
                                         value={selectedHour}
                                         onChange={handleHourChange}

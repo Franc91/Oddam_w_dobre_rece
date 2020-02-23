@@ -120,9 +120,10 @@ const StepOne = ({nextStep, step, add, handleOnChecked, state}) => {
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
                             control={<Checkbox 
-                                onChange={handleOnChecked('clothesGood')}
-                                checked={state.clothesGood}
-                                value='clothesGood'
+                                name='whatGive'
+                                onChange={handleOnChecked('whatGive')}
+                                // checked={state.clothesGood}
+                                value='ubrania, które nadają sie do ponownego użycia'
                                 color='secondary'
                                 // name='clothesGood'
                                 />} 
@@ -130,37 +131,41 @@ const StepOne = ({nextStep, step, add, handleOnChecked, state}) => {
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
                             control={<Checkbox 
-                                onChange={handleOnChecked('clothesBad')}
-                                checked={state.clothesBad}
+                                name='whatGive'
+                                onChange={handleOnChecked('whatGive')}
+                                // checked={state.clothesBad}
                                 color='secondary'
-                                value='clothesBad'
+                                value='ubrania do wyrzucenia'
                                 />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>ubrania do wyrzucenia</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
                             control={<Checkbox 
-                                onChange={handleOnChecked('toys')}
+                                name='whatGive'
+                                onChange={handleOnChecked('whatGive')}
                                 color='secondary'
-                                checked={state.toys}
-                                value='toys'
+                                // checked={state.toys}
+                                value='zabawki'
                                 />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>zabawki</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
                             control={<Checkbox 
-                                onChange={handleOnChecked('books')}
+                                name='whatGive'
+                                onChange={handleOnChecked('whatGive')}
                                 color='secondary'
-                                checked={state.books}
-                                value='books'
+                                // checked={state.books}
+                                value='książki'
                                 />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>książki</p>}/>
                             <FormControlLabel 
                             className={classes.StepOne__CheckboxLabel} 
                             control={<Checkbox 
-                                onChange={handleOnChecked('other')}
+                                name='whatGive'
+                                onChange={handleOnChecked('whatGive')}
                                 color='secondary'
-                                checked={state.other}
-                                value='other'
+                                // checked={state.other}
+                                value='inne'
                                 />} 
                             label={<p className={classes.StepOne__CheckboxLabel}>inne</p>}/>
                         </FormGroup>

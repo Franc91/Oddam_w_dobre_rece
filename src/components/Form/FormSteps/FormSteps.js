@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
 import StepThree from './StepThree'
 import Summary from './Summary'
 import StepFour from './StepFour'
 import ThankYou from './ThankYou/ThankYou'
+import moment from 'moment';
 
 export const FormSteps = () => {
     const [step, setStep] = useState (1)
     const [state, setState]= useState({
-        clothesGood: false,
-        clothesBad: false,
-        books: false,
-        toys: false,
-        other: false,
+        whatGive:[],
         bags:'',
         localization:'',
         nameOrganization:'',
@@ -21,13 +18,12 @@ export const FormSteps = () => {
         city:'',
         zipCode:'',
         phoneNumber:'',
-        date:'',
-        hour:'',
         addInfo:''
     })
-    const [selectedDate, handleDateChange ] = useState(new Date())
-    const [selectedHour, handleHourChange ] = useState(new Date())
-    const [whoHelp, setWhoHelp] = React.useState(() => [])
+    const [selectedDate, handleDateChange ] = useState(null)
+    const [selectedHour, handleHourChange ] = useState(null)
+    const [whoHelp, setWhoHelp] = useState(() => [])
+
 
     const handleWhoHelp = (event, newWhoHelps) => {
       if (newWhoHelps.length) {
@@ -44,7 +40,8 @@ export const FormSteps = () => {
     }
 
     const handleOnChecked = name => event => {
-        setState({ ...state, [name]: event.target.checked });
+        setState({ ...state, [name]: [...state.whatGive, event.target.value] });
+
       };
 
     const handleOnChange = name => event => {
@@ -101,6 +98,7 @@ export const FormSteps = () => {
                 return(
                     <Summary 
                     state={state}
+                    whoHelp={whoHelp}
                     nextStep={nextStep}
                     prevStep={prevStep}
                     />
