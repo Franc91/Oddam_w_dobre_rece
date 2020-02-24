@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Grid, makeStyles } from '@material-ui/core'
 import ShirtIcon from '../../../../assets/Icon-1.svg'
 import ArrowIcon from '../../../../assets/Icon-4.svg'
 import FormStepImg from '../../../../assets/Background-Form.jpg'
+import firebase from '../../../../config/fbConfig'
+import { UserAuthContext } from '../../../../contexts/UserAuthContext'
+import ErrorIcon from '@material-ui/icons/Error';
+import moment from 'moment';
+
 
 const useStyle = makeStyles({
     summary:{
@@ -12,7 +17,7 @@ const useStyle = makeStyles({
         boxSizing:'padding-box',
         backgroundPosition:'center',
         flexGrow:1,
-        height: 883,
+        minHeight: 883,
         // position: 'relative'
     },
     iconShirt:{
@@ -54,15 +59,19 @@ const useStyle = makeStyles({
         display: 'flex',
         flexDirection:'row',
         alignItems: 'center',
+        
 
 
     },
     stuffDescription:{
-        textAlign: 'center',
+        textAlign: 'left',
+        wordWrap: 'break-word',
         font: '400 24px Open Sans',
         letterSpacing: 0,
         color: '#000000',
-        opacity: 1
+        opacity: 1,
+        marginLeft: 10,
+        maxWidth: 500
     },
     summary__stuff:{
 
@@ -105,34 +114,76 @@ const useStyle = makeStyles({
         letterSpacing: 0,
         color: '#000000',
         opacity: 1,
+    },
+    error:{
+        font: '400 16px Open Sans',
+        letterSpacing: 0,
+        color: 'red',
+        opacity: 1,
+    },
+    errorText:{
+        margin: 0
     }
-
-
-
-
 })
 
-const Summary = ({nextStep, prevStep, state}) => {
+const Summary = ({nextStep, prevStep, state, selectedHour, selectedDate, whoHelp}) => {
     const classes = useStyle()
-    const next = (e) =>{
-        e.preventDefault();
-        nextStep()
+    const { user } = useContext(UserAuthContext)
+    const [ err,setErr ] = useState(null)
+
+    const sendForm = (e)=>{
+        e.preventDefault()
+        if(user !== undefined){
+            firebase.firestore().collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .set({formData:{
+                clothesGood: state.clothesGood,
+                clothesBad: state.clothesBad,
+                books: state.books,
+                toys: state.toys,
+                other: state.other,
+                bags: state.bags,
+                localization: state.localization,
+                nameOrganization: state.nameOrganization,
+                street: state.street,
+                city: state.city,
+                zipCode: state.zipCode,
+                phoneNumber: state.phoneNumber,
+                date: selectedDate,
+                time: selectedHour,
+                addInfo: state.addInfo
+                // whoHelp: 
+                }
+                },{merge: true}
+            )
+            .then(()=>{
+                nextStep()
+                console.log('wyslane')
+            })
+            .catch(()=>{
+                console.log('error')
+            })
+        }else{
+            setErr('Musisz być zalogowany, aby wysłać zgłoszenie')
+        }
     }
 
     const prev = (e) =>{
         e.preventDefault();
         prevStep()
     }
+ console.log(selectedDate)
+
 
     return (
         <Grid container className={classes.summary}>
             <Grid item className={classes.summary__content}>
                 <h3 className={classes.summary__contentTitle}>Podsumowanie Twojej darowizny</h3>
-                <p className={classes.summary__contentSubtitle}>Oddajesz</p>
+                <p className={classes.summary__contentSubtitle}>Oddajesz:</p>
                 <div className={classes.summary__stuff}>
                     <div className={classes.stuff} >
                         <div className={classes.iconShirt}></div> 
-                        <p className={classes.stuffDescription}>{state.bags} worki,</p>
+                        <p className={classes.stuffDescription}>{state.bags} worki,{state.whatGive.map(el=> el+ ', ')} {whoHelp.map(el=> el+', ')}</p>
                     </div>
                     <div className={classes.stuff}>
                         <div className={classes.iconArrows}></div>
@@ -158,7 +209,7 @@ const Summary = ({nextStep, prevStep, state}) => {
                     <div className={classes.pickUp}>
                         <h3 className={classes.pickUpTitle}>Termin odbioru:</h3>
                         <div className={classes.pickUpElement}>
-                            <span>Data</span><span>{state.date}</span>
+                            <span>Data</span><span>{selectedDate}</span>
                         </div>
                         <div className={classes.pickUpElement}>
                             <span>Godzina</span><span>{state.hour}</span>
@@ -169,17 +220,24 @@ const Summary = ({nextStep, prevStep, state}) => {
                     </div>
                 </div>
                 <div className={classes.summary__control}>
-                    <Button
-                    className={classes.summary__btn}
-                    onClick={next}
-                    >
-                        Dalej
-                    </Button>
+                    {
+                        err?
+                        <div className={classes.error}>
+                            <ErrorIcon large/> 
+                            <p className={classes.errorText}>{err}</p></div>
+                        : null
+                    }
                     <Button
                     className={classes.summary__btn}
                     onClick={prev}
                     >
                         Cofnij
+                    </Button>
+                    <Button
+                    className={classes.summary__btn}
+                    onClick={sendForm}
+                    >
+                        Wyślij
                     </Button>
                 </div>
 

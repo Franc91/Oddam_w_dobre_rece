@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Button, Grid, TextField, makeStyles } from '@material-ui/core'
-import firebase from '../../../../config/fbConfig'
-import { UserAuthContext } from '../../../../contexts/UserAuthContext'
-import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from '@date-io/moment';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { MuiPickersUtilsProvider,DatePicker, TimePicker } from "@material-ui/pickers";
 import FormStepImg from '../../../../assets/Background-Form.jpg'
+import moment from 'moment';
+import "moment/locale/pl";
 
 
 const useStyle=makeStyles({
@@ -114,41 +114,12 @@ const useStyle=makeStyles({
 
 const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateChange, selectedHour, handleHourChange, selectedDate}) => {
 
-    const { user } = useContext(UserAuthContext)
-
+    const locale = moment().locale('pl')
     const classes = useStyle()
 
-    const sendForm = (e)=>{
-        e.preventDefault()
-        if(user !== undefined){
-            firebase.firestore().collection('users')
-            .doc(firebase.auth().currentUser.uid)
-            .set({formData:{
-                clothesGood: state.clothesGood,
-                clothesBad: state.clothesBad,
-                books: state.books,
-                toys: state.toys,
-                other: state.other,
-                bags: state.bags,
-                localization: state.localization,
-                nameOrganization: state.nameOrganization,
-                street: state.street,
-                city: state.city,
-                zipCode: state.zipCode,
-                phoneNumber: state.phoneNumber,
-                date: state.date,
-                time: state.hour,
-                addInfo: state.addInfo
-                }
-                },{merge: true}
-            )
-            .then(()=>{
-                nextStep()
-            })
-            .catch(()=>{
-                console.log('error')
-            })
-        }
+    const next = (e) =>{
+        e.preventDefault();
+        nextStep()
     }
 
     const prev = (e) =>{
@@ -157,7 +128,7 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
     }
 
 
- console.log(state, selectedDate, selectedHour)
+ console.log(selectedDate)
     return (
         <div>
             <div className={classes.attention}>
@@ -197,16 +168,19 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
                             </div>
                             <div className={classes.stepFour_formBox}>
                             <h4 className={classes.stepFour_formBoxTitle}>Adres odbioru:</h4>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <MuiPickersUtilsProvider moment={moment} utils={MomentUtils} locale={locale}>
                                     <DatePicker
+                                        name='selectedDate'
                                         label='Data odbioru'
+                                        format='LL'
                                         value={selectedDate}
-                                        onChange={handleDateChange}
+                                        onChange={date => handleDateChange(date)}
                                         animateYearScrolling
                                     />
                                     <TimePicker
                                         clearable
                                         ampm={false}
+                                        format='HH:mm'
                                         label="Godzina odbioru"
                                         value={selectedHour}
                                         onChange={handleHourChange}
@@ -229,7 +203,7 @@ const StepFour = ({nextStep, prevStep, step, state, handleOnChange, handleDateCh
                             </Button>
                             <Button
                             className={classes.StepFour__btn}
-                            onClick={sendForm}
+                            onClick={next}
                             >
                                 Dalej
                             </Button>
